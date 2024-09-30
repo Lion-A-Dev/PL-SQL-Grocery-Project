@@ -1,0 +1,10 @@
+--TRIGGER UPDATE VENTECLIENT
+CREATE OR REPLACE TRIGGER update_client_num_cascade
+AFTER UPDATE OF numclient ON ENTREPOT.CLIENTS
+FOR EACH ROW
+BEGIN
+    UPDATE ENTREPOT.VENTECLIENTS
+    SET numclient = :NEW.numclient
+    WHERE numclient = :OLD.numclient;
+END;
+/
